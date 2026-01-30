@@ -2,10 +2,8 @@ import z from "zod";
 
 export const pickSchema = z.object({
   content: z.string().min(1, "Content is required"),
-  tag: z.enum(["sport", "bet", "odds", "stake", "conf"]),
   sport: z.string().min(1, "Sport is required"),
   betType: z.string().min(1, "Bet type is required"),
-  summary: z.string().min(1, "Summary is required"),
   odds: z.string().min(1, "Odds are required"),
   stake: z.string().optional(),
   confidence: z.number().min(1).max(10),

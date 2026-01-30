@@ -34,6 +34,11 @@ interface Post {
   likes: number;
   createdAt: string;
   comments: Comment[];
+  sport: string;
+  betType: string;
+  odds: string;
+  stake: string;
+  confidence: string;
 }
 
 interface ApiResponse {
@@ -148,7 +153,6 @@ const LiveFeed = () => {
       return post.comments;
     }
 
-    // প্রথম ২টি কমেন্ট দেখাবে
     return post.comments.slice(0, 2);
   };
 
@@ -198,7 +202,27 @@ const LiveFeed = () => {
             <div className="flex flex-wrap gap-3 mb-6">
               <div className="px-3 py-1.5 border border-gray-700 rounded-3xl text-sm">
                 <span className="opacity-80"> Sport:</span>{" "}
-                <span className="text-white capitalize">{post.tag}</span>
+                <span className="text-white capitalize">{post.sport}</span>
+              </div>
+
+              <div className="px-3 py-1.5 border border-gray-700 rounded-3xl text-sm">
+                <span className="opacity-80"> Bet:</span>{" "}
+                <span className="text-white capitalize">{post.betType}</span>
+              </div>
+
+              <div className="px-3 py-1.5 border border-gray-700 rounded-3xl text-sm">
+                <span className="opacity-80"> Odds:</span>{" "}
+                <span className="text-white capitalize">{post.odds}</span>
+              </div>
+
+              <div className="px-3 py-1.5 border border-gray-700 rounded-3xl text-sm">
+                <span className="opacity-80"> Stack:</span>{" "}
+                <span className="text-white capitalize">{post.stake}</span>
+              </div>
+
+              <div className="px-3 py-1.5 border border-gray-700 rounded-3xl text-sm">
+                <span className="opacity-80"> Conf:</span>{" "}
+                <span className="text-white capitalize">{post.confidence}/10</span>
               </div>
             </div>
 

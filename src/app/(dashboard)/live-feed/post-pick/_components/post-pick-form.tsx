@@ -19,13 +19,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { pickSchema } from "@/schema/pickSchema";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
@@ -40,10 +33,8 @@ export default function PostPickForm() {
     resolver: zodResolver(pickSchema),
     defaultValues: {
       content: "",
-      tag: "sport",
       sport: "",
       betType: "",
-      summary: "",
       odds: "",
       stake: "",
       confidence: 3,
@@ -62,10 +53,8 @@ export default function PostPickForm() {
     try {
       const payload = {
         content: values.content,
-        tag: values.tag,
         sport: values.sport,
         betType: values.betType,
-        summary: values.summary,
         odds: values.odds,
         stake: values.stake,
         confidence: values.confidence,
@@ -106,36 +95,6 @@ export default function PostPickForm() {
     <div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-          {/* Tag Select (Enum) */}
-          <FormField
-            control={form.control}
-            name="tag"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-zinc-400">Category</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                  disabled={isSubmitting}
-                >
-                  <FormControl>
-                    <SelectTrigger className="bg-[#0f0f0f] border-zinc-800 h-12 focus:ring-emerald-500">
-                      <SelectValue placeholder="Select category" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent className="bg-[#0f0f0f] border-zinc-800 text-white">
-                    <SelectItem value="sport">Sport</SelectItem>
-                    <SelectItem value="bet">Bet</SelectItem>
-                    <SelectItem value="odds">Odds</SelectItem>
-                    <SelectItem value="stake">Stake</SelectItem>
-                    <SelectItem value="conf">Confidence</SelectItem>
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
           {/* Sport Input */}
           <FormField
             control={form.control}
@@ -187,26 +146,6 @@ export default function PostPickForm() {
                   <Textarea
                     placeholder="Describe your pick..."
                     className="bg-[#0f0f0f] border-zinc-800 min-h-[120px] resize-none focus-visible:ring-emerald-500"
-                    {...field}
-                    disabled={isSubmitting}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          {/* Summary */}
-          <FormField
-            control={form.control}
-            name="summary"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-zinc-400">Summary</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="e.g., Lakers ML, Team A -2.5"
-                    className="bg-[#0f0f0f] border-zinc-800 h-12 focus-visible:ring-emerald-500"
                     {...field}
                     disabled={isSubmitting}
                   />
